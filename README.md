@@ -12,6 +12,19 @@
 | 跌倒检测服务 | Python、Ultralytics YOLO（姿态估计）、STGCN |
 | 后端 | 独立的 HTTP 服务，不在本仓库内 |
 
+## 本人负责
+
+前端全部开发（`src/`、`vite.config.js`、`run.ps1`、`package.json`）：
+
+- 基于 uni-app + Vue3 + Varlet + Vite 搭建跨端前端工程，采用「单页多模块」结构承载对话、日程表、周报告、OCR 识别、跌倒监控与用户中心
+- 设计统一鉴权与请求封装（`uni.request` + Bearer Token + 401 掉线重登）；文件上传按运行环境分流（小程序端 `uni.uploadFile`、H5 端 `fetch` + `FormData`）
+- 实现语音交互双通道回退：运行时能力检测优先使用 `MediaRecorder`，不支持时回退 `uni.getRecorderManager`
+- 实现 OCR 拍照与相册双来源，并配置 5 分钟请求超时
+- 负责前后端联调：以统一配置文件管理后端与跌倒检测服务两套地址，开发环境经 Vite 代理转发 `/api` 与 `/yoloapi` 以规避浏览器跨域预检 405，生产环境直连
+- 编写 PowerShell 一键启动脚本，自动拉起前后端并在退出时递归回收进程树
+
+> 本仓库还一并存档了 `CarePal-yolo/` 跌倒检测服务，便于完整运行。
+
 ## 前端结构
 
 单页多模块（SPA）结构，全部业务模块承载于 `src/pages/index/index.vue`，由 `src/config/app.config.js` 的 `moduleList` 驱动：
