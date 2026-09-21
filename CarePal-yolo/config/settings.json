@@ -1,0 +1,6 @@
+{
+    "stgcn_model": "models/best_model.pth",
+    "stgcn_device": "cuda",
+    "stgcn_window_size": 30,
+    "stgcn_stride": 1
+}

@@ -1,0 +1,20 @@
+# 依赖与构建产物
+node_modules/
+dist/
+unpackage/
+.hbuilderx/
+
+# 模型权重：单个文件 100MB+，超出 GitHub 硬上限，不纳入版本控制
+CarePal-yolo/models/
+*.pt
+*.pth
+
+# 本地缓存与数据
+CarePal-yolo/tmp/
+dataset/
+
+# 编辑器 / 系统
+.DS_Store
+.idea/
+.vscode/
+*.local
